@@ -1,0 +1,28 @@
+---
+title: "Efficient deterministic/stochastic simulations
+for metapopulation SIR/SEIR models of epidemics by integrating C++ into R"
+author: "TRAN Thi Cam Giang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SEIR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+1. Introduction
+Stochastic and analytical methods are widely applied for the analysis of epidemic models. Many simulation software as well as packages are proposed to help scientists observe fluctuations of infectious diseases over time. These tools simulate epidemic models either by dealing with a set of ordinary differential equations (ODEs) or by applying the stochastic simulation algorithm (SSA) of Gillespie. Simple epidemic models work well on these software tools. However, the accuracy, the simulation speed, and the complexity of models that the tools can simulate are three main drawbacks that always prompt us not to stop improving tools to increase efficient implementations available in software tools. Moreover, rather than dynamics of infectious diseases, predicting the potential spread of an infectious disease in a meta-population is the most difficult problem for scientists. To give an exact prediction about propagation of infectious diseases in a meta-population, we need to make simulations in a complex meta-population with many interconnected sub-populations where the meta-population takes into account many factors about the pathogen, the climatic conditions and simultaneously the interactions between sub-populations. Therefore, we introduce the "dizzysNewInfec" package that allows us to exactly simulate and accurately analyze dynamics of an infectious disease in a meta-population of interconnected sub-populations by using two basic and common disease models SIR and SEIR, and by implementing the direct algorithm of Gillespie in 1977 and the adaptive tau leaping to approximate the trajectory of a continuous-time stochastic process. In addition, on the technical aspect, this package integrates C++ in R, we use C++ to build algorithms, and use R to show two-dimensional and three-dimensional interfaces and use the available statistic functions in R to analyze obtained results. Hence, dizzysNewInfec, it speeds up simulations, it is very easy to install, to use and to show trajectories of disease evolution over time in a meta-population of sub-populations.
+
+For examples:
+
+```{r, fig=T,echo=T}
+library(dizzysNewInfec)
+# We have the values of parameters and of variables.
+# Here, we have S=E=I=R=NULL and N=1e7.
+# It means that we use N=1e7 to calculate the equilibrium values of variables.
+obj<- globSEIRNewInfec(typeSIMU="deterministic",duration=10*365,mu=1/(70*365),sigma=1/8,gamma=1/5,
+                      phiPHASE=0,nbCONTACT0=100,nbCONTACT1=0.1,nbVilles=1,S=NULL,E=NULL,I=NULL,R=NULL,N=1e7)
+
+# Use the plot function of the seir class
+plot(obj,col="red",ylab="number of infectives", xlab="time (day)")
+```
+

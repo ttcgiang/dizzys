@@ -1,0 +1,23 @@
+Package: dizzysNewInfec
+Type: Package
+Title: Simulating SEIR/SIR models
+Version: 0.4
+Date: 2017-06-02
+Author: Tran Thi Cam Giang
+Maintainer: Tran Thi Cam Giang <camgiang2010@gmail.com>
+Description: The "dizzysNewInfec" package enable to simulate the disease spread in space of infectious diseases by implementing the seasonally forced and spatially structured deterministic and stochastic SIR/SEIR metapopulation models. We proposed a new formula of infection for a metapopulation of coupled populations with the movement of individuals. The direct algorithm of Gillespie in 1977 as described in the book "Modeling Infectious Diseases IN HUMANS AND ANIMALS" of Keeling and Pejman Rohani (2008), and the adaptive tau-leaping algorithm to approximate the trajectory of a continuous-time stochastic process as described by Cao et al. (2007) are two main algorithms used to simulate models in this package.
+Imports: base,stats,graphics,methods, utils
+License: 0.4
+Repository: CRAN
+LazyLoad: true
+Collate: 'zzz.R' 'modelSEIRNewInfec.r' 'equiNewInfec.r'
+        'plotSEIRNewInfec.r' 'globSEIRNewInfec.r'
+        'globModelSEIRNewInfec.r' 'adapNewInfec.r'
+NeedsCompilation: yes
+LazyData: TRUE
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
